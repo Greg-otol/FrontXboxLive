@@ -1,0 +1,16 @@
+export enum RoutesPath {
+    HOME = '/',
+    LOGIN = '/signin',
+    SINGUP = '/signup',
+    PROFILES = '/profiles',
+    CREATE_PROFILES = '/profiles/create',
+    EDIT_PROFILE = '/profiles/edit/:id',
+    HOMEPAGE = '/profile/homepage/:id',
+    GAMES_LIST = '/profile/homepage/list/:id',
+    LIBRARY_GAMES = '/profile/homepage/library',
+    CREATE_GAMES = '/profile/createGames&Genrer/:id',
+    CREATE_GENRES = '/profile/genrers/:id',
+    GAME_DEFINITIONS = '/profile/game/:id',
+    EDIT_GAME = '/profile/game/edit/:id',
+    USER_CONFIGS = '/user/:id',
+}
