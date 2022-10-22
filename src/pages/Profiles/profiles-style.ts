@@ -6,14 +6,14 @@ export const Background = styled.main`
   `}
 `;
 
-export const ProfileSection = styled.section`
+export const ProfileSection = styled.div`
   ${() => css`
-    display: flex;
+    width: 100%;
+    display: grid;
     justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    width: auto;
-    height: 206px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 2rem;
+    padding: 3rem;
   `}
 `;
 

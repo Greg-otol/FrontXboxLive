@@ -6,7 +6,8 @@ export const CreateProfile = styled.img`
     height: 65px;
     cursor: pointer;
     position: relative;
-    left: 5rem;
+    left: -50rem;
+    bottom: 15rem;
     transition: ${theme.constants.transitionEvents};
     :hover {
       transform: ${theme.constants.transformeScale};

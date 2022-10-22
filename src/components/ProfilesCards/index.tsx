@@ -30,28 +30,24 @@ export const ProfilesCards = () => {
   };
 
   return (
-    <div>
-      <Styled.ProfileDiv>
-        {profiles.map((profile) => (
-          <div key={profile.id}>
-            <Styled.Profileimg
-              onClick={() => handleNavigateHomepage(profile.id)}
-              src={profile.imageUrl}
-              alt="Avatar do usuário"
-            />
+    <>
+      {profiles.map((profile) => (
+        <Styled.CardProfile key={profile.id}>
+          <Styled.Profileimg
+            onClick={() => handleNavigateHomepage(profile.id)}
+            src={profile.imageUrl}
+            alt="Avatar do usuário"
+          />
 
-            <Styled.ProfileDescription>
-              {profile.title}
-            </Styled.ProfileDescription>
+          <Styled.ProfileDescription>{profile.title}</Styled.ProfileDescription>
 
-            <Styled.ProfileEdit
-              src={Edit}
-              alt="Icone de editar o perfil"
-              onClick={() => handleEditProfile(`${profile.id}`)}
-            />
-          </div>
-        ))}
-      </Styled.ProfileDiv>
-    </div>
+          <Styled.ProfileEdit
+            src={Edit}
+            alt="Icone de editar o perfil"
+            onClick={() => handleEditProfile(`${profile.id}`)}
+          />
+        </Styled.CardProfile>
+      ))}
+    </>
   );
 };
