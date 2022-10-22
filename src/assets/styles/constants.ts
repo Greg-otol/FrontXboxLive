@@ -1,7 +1,7 @@
 import XboxBackground from "assets/img/xbox-live-background.jpg";
 import LoginBackground from "assets/img/backgroundlogin.jpg";
 import SignupBackground from "assets/img/signupbackground.jpg";
-import XboxWallpaper from "assets/img/xbox-wallpaper.png";
+import XboxWallpaper from "assets/img/xbox-wallpaper.jpg";
 import BackIcon from "assets/icon/Voltar.svg";
 import coolBackground from "assets/img/cool-background.png";
 import AddGames from "assets/icon/add_game.svg";
@@ -33,5 +33,5 @@ export const constants = {
   createGenresIcon: `url(${Category})`,
 
   transitionEvents: "all ease-in-out .6s",
-  transformeScale: "scale(1.2)",
+  transformeScale: "scale(1.1)",
 };

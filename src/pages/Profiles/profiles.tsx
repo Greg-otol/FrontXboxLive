@@ -16,6 +16,7 @@ export const Profiles = () => {
 
   return (
     <Style.Background>
+
       <ReturnPage Route={handleNavigateHome} />
 
       <Style.ProfileSection>
@@ -23,6 +24,7 @@ export const Profiles = () => {
 
         <CreateProfileBtn Create={() => navigate("/profiles/create")} />
       </Style.ProfileSection>
+
     </Style.Background>
   );
 };
