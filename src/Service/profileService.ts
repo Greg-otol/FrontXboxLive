@@ -5,7 +5,7 @@ import { ProfilesTypes } from "types/interfaces";
 export const Profiles = {
   ProfilesUser: async () => {
     try {
-      const res = await Api.get("/profiles", { method: "GET" });
+      const res = await Api.get("/profile", { method: "GET" });
       return res;
     } catch (error: any) {
       swal({
