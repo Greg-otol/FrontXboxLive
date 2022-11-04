@@ -1,16 +1,24 @@
-import Logo from "assets/img/xbox-black-icon.png";
-import { ReturnPage } from "components/ReturnPage";
+import { Header } from "../../components/Header/Header";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RegisterService } from "Service/authService";
 import swal from "sweetalert";
-import { RegisterUser } from "types/interfaces";
-import * as Style from "./signUp-style";
+import { IUserSignUp } from "types/interfaces";
+import {
+  SignUpBackground,
+  SignUpButton,
+  SignUpCol,
+  SignUpContainer,
+  SignUpFormGroup,
+  SignUpRow,
+  SignUpTitle,
+  SingUpCheckbox,
+} from "./signUp-style";
 
 export const SignUp = () => {
   const navigate = useNavigate();
 
-  const [values, setValues] = useState<RegisterUser>({
+  const [values, setValues] = useState<IUserSignUp>({
     name: "",
     nickname: "",
     email: "",
@@ -21,14 +29,14 @@ export const SignUp = () => {
   });
 
   const handleChangesValues = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValues((values: RegisterUser) => ({
+    setValues((values: IUserSignUp) => ({
       ...values,
       [e.target.name]:
         e.target.name === "isAdmin" ? e.target.checked : e.target.value,
     }));
   };
 
-  const handleRegisterUser = async (e: React.SyntheticEvent) => {
+  const handleSignUp = async (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     const response: any = await RegisterService.Register(values);
@@ -64,116 +72,118 @@ export const SignUp = () => {
   };
 
   return (
-    <Style.SignUp>
-      <Style.SignUpContainer>
-        <ReturnPage Route={() => navigate(-1)} />
+    <SignUpBackground>
+      <Header />
+      <SignUpContainer onSubmit={handleSignUp}>
+        <SignUpTitle>Cadastrar usuário</SignUpTitle>
+        <SignUpRow>
+          <SignUpCol>
+            <SignUpFormGroup>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder=" Digite seu Nome"
+                required
+                onChange={handleChangesValues}
+              />
+            </SignUpFormGroup>
+          </SignUpCol>
+        </SignUpRow>
 
-        <Style.SingupH2 style={{ color: "#fff" }}>Cadastro de usuário</Style.SingupH2>
+        <SignUpRow>
+          <SignUpCol>
+            <SignUpFormGroup>
+              <input
+                type="text"
+                name="nickname"
+                id="nickname"
+                placeholder=" Crie seu Nickname"
+                required
+                onChange={handleChangesValues}
+              />
+            </SignUpFormGroup>
+          </SignUpCol>
+        </SignUpRow>
 
-        <Style.SingupForm onSubmit={handleRegisterUser}>
+        <SignUpRow>
+          <SignUpCol>
+            <SignUpFormGroup>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder=" Digite seu Email"
+                required
+                onChange={handleChangesValues}
+              />
+            </SignUpFormGroup>
+          </SignUpCol>
+        </SignUpRow>
 
-          <Style.SignUpRow>
-            <Style.SignUpCol>
-              <Style.SignUpFormGroup>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  placeholder=" Digite seu Nome"
-                  required
-                  onChange={handleChangesValues}
-                />
-              </Style.SignUpFormGroup>
-            </Style.SignUpCol>
-          </Style.SignUpRow>
+        <SignUpRow>
+          <SignUpCol>
+            <SignUpFormGroup>
+              <input
+                type="text"
+                name="cpf"
+                id="cpf"
+                placeholder=" Digite seu CPF"
+                required
+                onChange={handleChangesValues}
+              />
+            </SignUpFormGroup>
+          </SignUpCol>
+        </SignUpRow>
 
-          <Style.SignUpRow>
-            <Style.SignUpCol>
-              <Style.SignUpFormGroup>
-                <input
-                  type="text"
-                  name="nickname"
-                  id="nickname"
-                  placeholder=" Crie seu Nickname"
-                  required
-                  onChange={handleChangesValues}
-                />
-              </Style.SignUpFormGroup>
-            </Style.SignUpCol>
-          </Style.SignUpRow>
+        <SignUpRow>
+          <SignUpCol>
+            <SignUpFormGroup>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder=" Crie uma senha"
+                required
+                onChange={handleChangesValues}
+              />
+            </SignUpFormGroup>
+          </SignUpCol>
+        </SignUpRow>
 
-          <Style.SignUpRow>
-            <Style.SignUpCol>
-              <Style.SignUpFormGroup>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder=" Digite seu Email"
-                  required
-                  onChange={handleChangesValues}
-                />
-              </Style.SignUpFormGroup>
-            </Style.SignUpCol>
-          </Style.SignUpRow>
+        <SignUpRow>
+          <SignUpCol>
+            <SignUpFormGroup>
+              <input
+                type="password"
+                name="confirmPassword"
+                id="confirmPassword"
+                placeholder=" Confirme sua senha"
+                required
+                onChange={handleChangesValues}
+              />
+            </SignUpFormGroup>
+          </SignUpCol>
+        </SignUpRow>
 
-          <Style.SignUpRow>
-            <Style.SignUpCol>
-              <Style.SignUpFormGroup>
-                <input
-                  type="text"
-                  name="cpf"
-                  id="cpf"
-                  placeholder=" Digite seu CPF"
-                  required
-                  onChange={handleChangesValues}
-                />
-              </Style.SignUpFormGroup>
-            </Style.SignUpCol>
-          </Style.SignUpRow>
-
-          <Style.SignUpRow>
-            <Style.SignUpCol>
-              <Style.SignUpFormGroup>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder=" Digite uma senha"
-                  required
-                  onChange={handleChangesValues}
-                />
-              </Style.SignUpFormGroup>
-            </Style.SignUpCol>
-          </Style.SignUpRow>
-
-          <Style.SignUpRow>
-            <Style.SignUpCol>
-              <Style.SignUpFormGroup>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  id="confirmPassword"
-                  placeholder=" Confirme sua senha"
-                  required
-                  onChange={handleChangesValues}
-                />
-              </Style.SignUpFormGroup>
-            </Style.SignUpCol>
-          </Style.SignUpRow>
-
-          <Style.SingupCheckbox>
-            <label>Administrador? Marque aqui →</label>
+        <SingUpCheckbox>
+          <label style={{ marginLeft: "20px" }}>
+            Administrador? Ative aqui
+          </label>
+          <div className="switch__container">
             <input
-              type="checkbox"
               name="isAdmin"
-              checked={values.isAdmin}
+              id="switch-flat"
+              className="switch switch--flat"
+              type="checkbox"
               onChange={handleChangesValues}
             />
-          </Style.SingupCheckbox>
-          <Style.SignUpButton type="submit">Cadastrar</Style.SignUpButton>
-        </Style.SingupForm>
-      </Style.SignUpContainer>
-    </Style.SignUp>
+            <label htmlFor="switch-flat"></label>
+          </div>
+        </SingUpCheckbox>
+
+        <SignUpButton type="submit">Cadastrar</SignUpButton>
+      </SignUpContainer>
+    </SignUpBackground>
   );
 };

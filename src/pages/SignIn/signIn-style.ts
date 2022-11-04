@@ -1,92 +1,88 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import backgroundSignin from "../../assets/img/background_signin.jpg";
 
-export const Login = styled.div`
-  ${({ theme }) => css`
-    background-image: ${theme.constants.loginBackground};
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 100%;
-    height: 100vh;
-    display: grid;
-  `}
+export const SignInBackground = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(${backgroundSignin});
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
 `;
 
-export const LoginContainer = styled.div`
-  ${() => css`
-    background: rgba(0, 0, 0, 0.3);
-    margin: 150px auto;
-    max-width: 500px;
-    padding: 50px;
-    border-radius: 10px;
-  `}
+export const SignInContainer = styled.form`
+  background: rgba(0, 0, 0, 0.3);
+  margin: 0 auto;
+  max-width: 350px;
+  padding: 20px;
+  border-radius: 10px;
 `;
 
-export const Row = styled.div`
-  ${() => css`
-    display: flex;
-    gap: 1rem;
-  `}
+export const SignInTitle = styled.h2`
+  text-align: center;
+  color: rgb(230, 230, 230);
 `;
 
-export const Col = styled.div`
-  ${() => css`
-    flex: 1;
-  `}
+export const SignInRow = styled.div`
+  display: flex;
+  gap: 1rem;
 `;
 
-export const FormGroup = styled.div`
-  ${() => css`
-    margin: 1rem 0;
+export const SignInCol = styled.div`
+  flex: 1;
+`;
+
+export const SignInFormGroup = styled.div`
+  margin: 10px auto;
+  width: 100%;
+  input {
+    display: inherit;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    outline: 0;
+    font-size: 1rem;
+    padding: 10px;
     width: 300px;
 
-    input {
-      background: rgba(255, 255, 255, 0.7);  
-      display: inherit;
-      border: none;
-      outline: 0;
-      border-radius: 5px;
-      color: black;
-      font-size: 16px;
-      padding: 10px;
-      width: 100%;
+    @media screen and (max-width: 350px) {
+      width: 230px;
     }
-  `}
+  }
 `;
 
-export const LoginContent = styled.form`
-  ${() => css`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  `}
+export const SigninNavigate = styled.button`
+  display: block;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  margin-left: 170px;
+  color: rgb(230, 230, 230);
+  text-decoration: underline;
+  transition: all 0.8s ease-out;
+  &:hover {
+    color: rgba(0, 200, 0, 0.6);
+  }
+
+  @media screen and (max-width: 350px) {
+    margin-left: 100px;
+  }
 `;
 
-export const LoginDescription = styled.p`
-  ${({ theme }) => css`
-    padding: 1rem;
-    color: #fff;
-    ${theme.mixins.bodyStyle}
-  `}
-`;
-
-export const LoginButton = styled.button`
-  ${({ theme }) => css`
-    background-color: rgba(0, 0, 0, 0.0);
-    border: 1px solid teal;
-    border-radius: 5px;
-    color: white;
-    display: block;
-    font-size: 1.25rem;
-    padding: 10px;
-    margin-top: 10px;
-    width: 50%;
-    cursor: pointer;
-    transition: all 0.6s ease-out;
-
-    &:hover {
-      background-color: rgba(0, 128, 128, 0.6);
-      color: white;
-    }
-  `}
+export const SignInButton = styled.button`
+  background-color: rgba(0, 0, 0, 0.2);
+  color: rgb(230, 230, 230);
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  display: block;
+  font-size: 1.25rem;
+  padding: 10px;
+  margin: 10px auto;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.8s ease-out;
+  &:hover {
+    background-color: rgba(0, 200, 0, 0.6);
+  }
 `;

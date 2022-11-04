@@ -1,9 +1,9 @@
-export interface UserLogin {
+export interface IUserSignIn {
   email: string;
   password: string;
 }
 
-export interface RegisterUser {
+export interface IUserSignUp {
   name: string;
   nickname: string;
   email: string;
@@ -13,7 +13,7 @@ export interface RegisterUser {
   isAdmin: boolean;
 }
 
-export interface GetUserType {
+export interface IGetIUserType {
   id?: string;
   name: string;
   nickname: string;
@@ -30,7 +30,7 @@ export interface GetUserType {
   ];
 }
 
-export interface UserType {
+export interface IUserType {
   name: string;
   nickname: string;
   email: string;
@@ -47,7 +47,7 @@ export interface UserType {
   ];
 }
 
-export interface GamesTypes {
+export interface IGamesTypes {
   id?: string;
   title: string;
   coverImageUrl: string;
@@ -64,7 +64,7 @@ export interface GamesTypes {
   ];
 }
 
-export interface CreateGameType {
+export interface ICreateGameType {
   id?: string;
   title: string;
   coverImageUrl: string;
@@ -76,7 +76,7 @@ export interface CreateGameType {
   genreGame: string;
 }
 
-export interface GenrerTypes {
+export interface IGenrerTypes {
   id: string;
   name: string;
   gamesId?: string;
@@ -87,11 +87,11 @@ export interface GenrerTypes {
   ];
 }
 
-export interface CreateGenrerType {
+export interface ICreateGenrerType {
   name: string;
 }
 
-export interface ProfilesTypes {
+export interface IProfilesTypes {
   id?: string;
   title: string;
   imageUrl: string;
@@ -115,7 +115,7 @@ export interface ProfilesTypes {
   ];
 }
 
-export interface HomepageTypes {
+export interface IHomePageTypes {
   profileData: {
     title: string;
     imageUrl: string;
@@ -160,7 +160,7 @@ export interface HomepageTypes {
   ];
 }
 
-export interface FavoriteGamesType {
+export interface IFavoriteGamesType {
   games: [
     {
       id: string;
@@ -178,7 +178,7 @@ export interface FavoriteGamesType {
   id: string;
 }
 
-export interface GamesProfile {
+export interface IGamesProfile {
   id?: string;
   title: string;
   coverImageUrl: string;
@@ -192,7 +192,7 @@ export interface GamesProfile {
   ];
 }
 
-export interface AddFavorite {
+export interface IAddFavorite {
   gameId: string | undefined;
   favoriteGameId: string | undefined;
 }

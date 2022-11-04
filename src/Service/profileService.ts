@@ -1,6 +1,6 @@
 import Api from "./api";
 import swal from "sweetalert";
-import { ProfilesTypes } from "types/interfaces";
+import { IProfilesTypes } from "types/interfaces";
 
 export const Profiles = {
   ProfilesUser: async () => {
@@ -17,7 +17,7 @@ export const Profiles = {
     }
   },
 
-  CreateProfile: async (profile: ProfilesTypes) => {
+  CreateProfile: async (profile: IProfilesTypes) => {
     try {
       const res = await Api.post("/profile", profile);
       return res;
@@ -46,7 +46,7 @@ export const Profiles = {
     }
   },
 
-  EditProfile: async (id: string, profile: ProfilesTypes) => {
+  EditProfile: async (id: string, profile: IProfilesTypes) => {
     try {
       const res = await Api.patch(`/profile/${id}`, profile);
       return res
