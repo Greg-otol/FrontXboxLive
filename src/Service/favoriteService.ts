@@ -1,11 +1,25 @@
 import Api from "./api";
 import swal from "sweetalert";
-import { IUserSignIn, IUserSignUp } from "../types/interfaces";
+import { IAddFavorite } from "types/interfaces";
 
-export const loginService = {
-  Login: async (values: IUserSignIn) => {
+export const Favorite = {
+  GetFavoriteByProfileId: async (id: string) => {
     try {
-      const res = await Api.post("/auth", values);
+      const res = await Api.get(`/favorites/${id}`);
+      return res;
+    } catch (error: any) {
+      swal({
+        title: "Error",
+        text: `${error.message}`,
+        icon: "error",
+        timer: 6000,
+      });
+    }
+  },
+
+  FavoriteGame: async (id: string, favorite: IAddFavorite) => {
+    try {
+      const res = await Api.patch(`/favorites/${id}`, favorite);
       return res;
     } catch (error: any) {
       swal({
@@ -17,21 +31,3 @@ export const loginService = {
     }
   },
 };
-
-export const RegisterService = {
-  Register: async (values: IUserSignUp) => {
-    try {
-      const res = await Api.post("/user", values);
-      return res;
-    } catch (error: any) {
-      swal({
-        title: "Error",
-        text: `${error.message}`,
-        icon: "error",
-        timer: 6000,
-      });
-    }
-  },
-};
-
-

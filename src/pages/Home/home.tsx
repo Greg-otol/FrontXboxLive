@@ -1,7 +1,13 @@
-import { HomeCarousel } from "components/Carousel";
+import {
+  HomeBackground,
+  HomeButton,
+  HomeContainer,
+  HomeDescription,
+  HomeMainContainer,
+  HomeTitle,
+} from "../Home/home-style";
+import { CarouselOne } from "../../components/Carousel/Carousel";
 import { useNavigate } from "react-router-dom";
-import "./home-style";
-import * as Style from "./home-style";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -11,18 +17,17 @@ export const Home = () => {
   };
 
   return (
-    <Style.Home>
-      <Style.HomeContainer>
-        <Style.HomeTitle>Bem vindo a Xbox Live</Style.HomeTitle>
-
-        <Style.HomeDescription>
-          Clique no botão abaixo para entrar em sua conta
-        </Style.HomeDescription>
-        <Style.HomeButton onClick={handleNavigate}>Entrar</Style.HomeButton>
-      </Style.HomeContainer>
-      <Style.HomeContainerCarousel>
-        <HomeCarousel />
-      </Style.HomeContainerCarousel>
-    </Style.Home>
+    <HomeBackground>
+      <HomeMainContainer>
+        <HomeContainer>
+          <HomeTitle>Bem vindo a Xbox Live</HomeTitle>
+          <HomeDescription>
+            Clique no botão abaixo para acessar sua conta
+          </HomeDescription>
+          <HomeButton onClick={handleNavigate}>Entrar</HomeButton>
+        </HomeContainer>
+        <CarouselOne />
+      </HomeMainContainer>
+    </HomeBackground>
   );
 };

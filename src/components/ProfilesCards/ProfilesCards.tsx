@@ -2,13 +2,18 @@ import Edit from "assets/icon/edit_profile.svg";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Profiles } from "Service/profileService";
-import { ProfilesTypes } from "types/interfaces";
-import * as Styled from "./style";
+import { IProfilesTypes } from "types/interfaces";
+import {
+  CardProfile,
+  ProfileDescription,
+  ProfileEdit,
+  Profileimg,
+} from "./profilesCards_style";
 
 export const ProfilesCards = () => {
   const navigate = useNavigate();
 
-  const [profiles, setProfiles] = useState<ProfilesTypes[]>([]);
+  const [profiles, setProfiles] = useState<IProfilesTypes[]>([]);
 
   useEffect(() => {
     const fetchProfiles = async () => {
@@ -32,21 +37,21 @@ export const ProfilesCards = () => {
   return (
     <>
       {profiles.map((profile) => (
-        <Styled.CardProfile key={profile.id}>
-          <Styled.Profileimg
+        <CardProfile key={profile.id}>
+          <Profileimg
             onClick={() => handleNavigateHomepage(profile.id)}
             src={profile.imageUrl}
             alt="Avatar do usuário"
           />
 
-          <Styled.ProfileDescription>{profile.title}</Styled.ProfileDescription>
+          <ProfileDescription>{profile.title}</ProfileDescription>
 
-          <Styled.ProfileEdit
+          <ProfileEdit
             src={Edit}
             alt="Icone de editar o perfil"
             onClick={() => handleEditProfile(`${profile.id}`)}
           />
-        </Styled.CardProfile>
+        </CardProfile>
       ))}
     </>
   );

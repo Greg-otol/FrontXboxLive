@@ -1,7 +1,7 @@
 import XboxBackground from "assets/img/xbox-live-background.jpg";
-import LoginBackground from "assets/img/backgroundlogin.jpg";
+//import LoginBackground from "assets/img/backgroundlogin.jpg";
 import SignupBackground from "assets/img/signupbackground.jpg";
-import XboxWallpaper from "assets/img/xbox-wallpaper.jpg";
+import XboxWallpaper from "assets/img/background_profile.jpg";
 import BackIcon from "assets/icon/Voltar.svg";
 import coolBackground from "assets/img/cool-background.png";
 import AddGames from "assets/icon/add_game.svg";
@@ -21,7 +21,7 @@ export const constants = {
   bodyFontSize: "1rem",
   bodyLineHeight: "140%",
 
-  loginBackground: `url(${LoginBackground})`,
+  //loginBackground: `url(${LoginBackground})`,
   signupBackground: `url(${SignupBackground})`,
   xboxBackground: `url(${XboxBackground})`,
   xboxWallpaper: `url(${XboxWallpaper})`,

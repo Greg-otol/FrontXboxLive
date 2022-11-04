@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { Profiles } from "Service/profileService";
 import swal from "sweetalert";
-import * as Style from "./style";
+import { DeleteProfileButton } from "./style";
 
 export const DeleteProfileBtn = () => {
   const { id } = useParams();
@@ -21,7 +21,7 @@ export const DeleteProfileBtn = () => {
       } else {
         swal({
           title: "Error",
-          text: "Erro ao deletar o perfil!",
+          text: "Erro ao deletar perfil!",
           icon: "error",
           timer: 6000,
         });
@@ -31,7 +31,7 @@ export const DeleteProfileBtn = () => {
 
   const openModalDelete = () => {
     swal({
-      title: "Apagar Personagem?",
+      title: "Apagar Perfil?",
       icon: "warning",
       buttons: ["Não", "Sim"],
     }).then((resp) => {
@@ -43,9 +43,9 @@ export const DeleteProfileBtn = () => {
 
   return (
     <>
-      <Style.DeleteProfileBtn type="button" onClick={openModalDelete}>
+      <DeleteProfileButton type="button" onClick={openModalDelete}>
         Deletar
-      </Style.DeleteProfileBtn>
+      </DeleteProfileButton>
     </>
   );
 };

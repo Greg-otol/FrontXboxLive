@@ -1,18 +1,26 @@
-import { ChangePassword } from "components/ChangePassword";
-import { ContainerForm } from "components/ContainerForm";
-import { ReturnPage } from "components/ReturnPage";
+import { Header } from "components/Header/Header";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { User } from "Service/userService";
 import swal from "sweetalert";
-import { UserType } from "types/interfaces";
-import * as Style from "./style";
+import { IUserType } from "types/interfaces";
+import {
+  BtnDelete,
+  BtnEdit,
+  BtnsRequests,
+  UserBackground,
+  UserCol,
+  UserContainer,
+  UserFormGroup,
+  UserRow,
+  UserTitle,
+} from "./style";
 
 export const UserConfigs = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const [user, setUser] = useState<UserType>({
+  const [user, setUser] = useState<IUserType>({
     name: "",
     nickname: "",
     email: "",
@@ -114,53 +122,67 @@ export const UserConfigs = () => {
   };
 
   return (
-    <Style.Page>
-      <ReturnPage Route={() => navigate(-1)} />
+    <UserBackground>
+      <Header />
 
-      <ContainerForm>
-        <Style.Info>Gerenciamento de usuário</Style.Info>
+      <UserContainer onSubmit={handleEditUser}>
+        <UserTitle>Gerenciamento de usuário</UserTitle>
 
-        <Style.Form onSubmit={handleEditUser}>
-          <Style.Inputs
-            type="text"
-            placeholder=" Nome do usuário"
-            name="name"
-            id="name"
-            value={user.name}
-            onChange={handleValues}
-            required
-          />
+        <UserRow>
+          <UserCol>
+            <UserFormGroup>
+              <input
+                type="text"
+                placeholder=" Nome do usuário"
+                name="name"
+                id="name"
+                value={user.name}
+                onChange={handleValues}
+                required
+              />
+            </UserFormGroup>
+          </UserCol>
+        </UserRow>
 
-          <Style.Inputs
-            type="text"
-            placeholder=" Nickname do usuário"
-            name="nickname"
-            id="nickname"
-            value={user.nickname}
-            onChange={handleValues}
-            required
-          />
+        <UserRow>
+          <UserCol>
+            <UserFormGroup>
+              <input
+                type="text"
+                placeholder=" Nickname do usuário"
+                name="nickname"
+                id="nickname"
+                value={user.nickname}
+                onChange={handleValues}
+                required
+              />
+            </UserFormGroup>
+          </UserCol>
+        </UserRow>
 
-          <Style.Inputs
-            type="text"
-            placeholder=" Email do usuário"
-            name="email"
-            id="email"
-            value={user.email}
-            onChange={handleValues}
-            required
-          />
+        <UserRow>
+          <UserCol>
+            <UserFormGroup>
+              <input
+                type="text"
+                placeholder=" Email do usuário"
+                name="email"
+                id="email"
+                value={user.email}
+                onChange={handleValues}
+                required
+              />
+            </UserFormGroup>
+          </UserCol>
+        </UserRow>
 
-          <Style.BtnsRequests>
-            <Style.BtnEdit type="submit">Editar</Style.BtnEdit>
-            <Style.BtnDelete type="button" onClick={handleDeleteUser}>
-              Deletar usuário
-            </Style.BtnDelete>
-          </Style.BtnsRequests>
-
-          <ChangePassword />
-        </Style.Form>
-      </ContainerForm>
-    </Style.Page>
+        <BtnsRequests>
+          <BtnEdit type="submit">Editar</BtnEdit>
+          <BtnDelete type="button" onClick={handleDeleteUser}>
+            Deletar
+          </BtnDelete>
+        </BtnsRequests>
+      </UserContainer>
+    </UserBackground>
   );
 };

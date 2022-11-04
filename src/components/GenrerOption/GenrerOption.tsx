@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import * as Style from "./GenrerOption-style";
-import { GenrerTypes } from "types/interfaces";
+import { IGenrerTypes } from "types/interfaces";
 import { Genrers } from "Service/genrerService";
+import { ContainerOption, Options, OptionSelect } from "./GenrerOption-style";
 
 export const GenrerOption = () => {
-  const [genrers, setGenrers] = useState<GenrerTypes[]>([]);
+  const [genrers, setGenrers] = useState<IGenrerTypes[]>([]);
 
   useEffect(() => {
     const fetchGenrer = async () => {
@@ -15,15 +15,15 @@ export const GenrerOption = () => {
   }, []);
 
   return (
-    <Style.ContainerOption>
-      <Style.OptionSelect>
-        <Style.Options value="default">
-          Gêneros
-        </Style.Options>
+    <ContainerOption>
+      <OptionSelect>
+        <Options value="default">Gêneros</Options>
         {genrers.map((genrer) => (
-          <Style.Options value="" key={genrer.id}>{genrer.name}</Style.Options>
+          <Options value="" key={genrer.id}>
+            {genrer.name}
+          </Options>
         ))}
-      </Style.OptionSelect>
-    </Style.ContainerOption>
+      </OptionSelect>
+    </ContainerOption>
   );
 };

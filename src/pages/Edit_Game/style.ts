@@ -1,44 +1,47 @@
 import styled from "styled-components";
-import backgroundProfile from "../../assets/img/background_profile.jpg";
 
-export const ProfileEditBackground = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-image: url(${backgroundProfile});
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 100vh;
-`;
-
-export const ProfileEditContainer = styled.form`
+export const MainPage = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 450px;
+  width: 100%;
+  height: auto;
+`;
+
+export const DivItems = styled.div`
+  display: flex;
+  //flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  //gap: 20px;
+`;
+
+export const EditGameContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background: rgba(0, 0, 0, 0.3);
-  margin: 0 auto;
-  
+  width: 70%;
+  margin: 30px;
   padding: 20px;
   border-radius: 10px;
-  @media screen and (max-width: 500px) {
-    max-width: 250px;
+  @media screen and (max-width: 350px) {
+    width: 270px;
   }
 `;
 
-export const ProfileEditRow = styled.div`
+export const EditGameRow = styled.div`
   display: flex;
   gap: 1rem;
 `;
 
-export const ProfileEditCol = styled.div`
+export const EditGameCol = styled.div`
   flex: 1;
 `;
 
-export const ProfileEditFormGroup = styled.div`
-  margin: 10px auto;
+export const EditGameFormGroup = styled.div`
+  margin: 5px auto;
   width: 100%;
   input {
     display: inherit;
@@ -47,15 +50,11 @@ export const ProfileEditFormGroup = styled.div`
     outline: 0;
     font-size: 1rem;
     padding: 10px;
-    width: 400px;
-
-    @media screen and (max-width: 500px) {
-      width: 100%;
-    }
+    width: 100%;
   }
 `;
 
-export const ProfileEditButton = styled.button`
+export const EditGameButton = styled.button`
   background-color: rgba(0, 0, 0, 0.2);
   color: rgb(230, 230, 230);
   border: none;
@@ -73,9 +72,10 @@ export const ProfileEditButton = styled.button`
   }
 `;
 
-export const ProfileEditImg = styled.img`
+export const CoverImgGame = styled.img`
   width: 206px;
   height: 206px;
   border: 1px solid #0d1522;
   border-radius: 50%;
+  cursor: pointer;
 `;

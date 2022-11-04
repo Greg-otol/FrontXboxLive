@@ -1,6 +1,6 @@
 import Api from "./api";
 import swal from "sweetalert";
-import { CreateGameType } from "types/interfaces";
+import { ICreateGameType } from "types/interfaces";
 
 export const GetGames = {
   AllGames: async () => {
@@ -31,7 +31,7 @@ export const GetGames = {
     }
   },
 
-  CreateGame: async (game: CreateGameType) => {
+  CreateGame: async (game: ICreateGameType) => {
     try {
       const res = await Api.post("/games", game);
       return res;
@@ -45,7 +45,7 @@ export const GetGames = {
     }
   },
 
-  EditGame: async (id: string, game: CreateGameType) => {
+  EditGame: async (id: string, game: ICreateGameType) => {
     try {
       const res = await Api.patch(`/games/${id}`, game);
       return res;

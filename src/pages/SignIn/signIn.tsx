@@ -1,14 +1,22 @@
-import Logo from "assets/img/xbox-black-icon.png";
-import { ReturnPage } from "components/ReturnPage";
+import { Header } from "../../components/Header/Header";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { loginService } from "Service/authService";
 import swal from "sweetalert";
-import { UserLogin } from "types/interfaces";
-import * as Style from "./signIn-style";
+import { IUserSignIn } from "types/interfaces";
+import {
+  SignInContainer,
+  SignInRow,
+  SignInCol,
+  SignInFormGroup,
+  SignInButton,
+  SignInTitle,
+  SignInBackground,
+  SigninNavigate,
+} from "./signIn-style";
 
 export const Login = () => {
-  const navigation = useNavigate();
+  const navigate = useNavigate();
 
   const [values, setValues] = useState({
     email: "",
@@ -16,13 +24,13 @@ export const Login = () => {
   });
 
   const handleChangesValues = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValues((values: UserLogin) => ({
+    setValues((values: IUserSignIn) => ({
       ...values,
       [e.target.name]: e.target.value,
     }));
   };
 
-  const handleLogin = async (e: React.SyntheticEvent) => {
+  const handleSignIn = async (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     const response: any = await loginService.Login(values);
@@ -47,55 +55,54 @@ export const Login = () => {
         icon: "success",
         timer: 3000,
       });
-      navigation("/profiles");
+      navigate("/profiles");
     }
   };
 
+  const handleNavigate = () => {
+    navigate("/signup");
+  };
+
   return (
-    <Style.Login>
-      <Style.LoginContainer>
-        <ReturnPage Route={() => navigation("/")} />
+    <SignInBackground>
+      <Header />
+      <SignInContainer onSubmit={handleSignIn}>
+        <SignInTitle>Xbox Live</SignInTitle>
+        <SignInRow>
+          <SignInCol>
+            <SignInFormGroup>
+              <input
+                type="text"
+                name="email"
+                id="email"
+                placeholder=" Digite seu Email"
+                required
+                onChange={handleChangesValues}
+              />
+            </SignInFormGroup>
+          </SignInCol>
+        </SignInRow>
 
-          <Style.LoginContent onSubmit={handleLogin}>
-            <Style.Row>
-              <Style.Col>
-                <Style.FormGroup>
-                  <input
-                    type="text"
-                    name="email"
-                    id="email"
-                    placeholder=" Digite seu Email"
-                    required
-                    onChange={handleChangesValues}
-                  />
-                </Style.FormGroup>
-              </Style.Col>
-            </Style.Row>
+        <SignInRow>
+          <SignInCol>
+            <SignInFormGroup>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder=" Digite sua senha"
+                required
+                onChange={handleChangesValues}
+              />
+            </SignInFormGroup>
+          </SignInCol>
+        </SignInRow>
 
-            <Style.Row>
-              <Style.Col>
-                <Style.FormGroup>
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder=" Digite sua senha"
-                    required
-                    onChange={handleChangesValues}
-                  />
-                </Style.FormGroup>
-              </Style.Col>
-            </Style.Row>
-
-            <Style.LoginDescription>
-              Não tem cadastro?{" "}
-                <Link style={{ color: "#fff" }} to={"/signup"}>Cadastre-se aqui!</Link>
-            </Style.LoginDescription>
-
-            <Style.LoginButton type="submit">Entrar</Style.LoginButton>
-          </Style.LoginContent>
-       
-      </Style.LoginContainer>
-    </Style.Login>
+        <SignInButton type="submit">Entrar</SignInButton>
+        <SigninNavigate onClick={handleNavigate}>
+          Cadastre-se aqui!
+        </SigninNavigate>
+      </SignInContainer>
+    </SignInBackground>
   );
 };

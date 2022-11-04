@@ -1,20 +1,27 @@
-import { ContainerForm } from "components/ContainerForm";
-import { ReturnPage } from "components/ReturnPage";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
-import { ProfilesTypes } from "types/interfaces";
+import { IProfilesTypes } from "types/interfaces";
 import { Profiles } from "Service/profileService";
-import * as Style from "./EditProfile-style";
 import { DeleteProfileBtn } from "components/Modal/DeleteProfileBtn";
+import {
+  ProfileEditBackground,
+  ProfileEditButton,
+  ProfileEditCol,
+  ProfileEditContainer,
+  ProfileEditFormGroup,
+  ProfileEditImg,
+  ProfileEditRow,
+} from "./EditProfile-style";
+import { Header } from "components/Header/Header";
 
 export const EditProfile = () => {
   const navigate = useNavigate();
 
   const { id } = useParams();
 
-  const [profile, setProfile] = useState<ProfilesTypes>({
+  const [profile, setProfile] = useState<IProfilesTypes>({
     title: "",
     imageUrl: "",
     userId: "",
@@ -42,7 +49,7 @@ export const EditProfile = () => {
   };
 
   const handleChangeValues = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setProfile((values: ProfilesTypes) => ({
+    setProfile((values: IProfilesTypes) => ({
       ...values,
       [e.target.name]: e.target.value,
     }));
@@ -82,39 +89,44 @@ export const EditProfile = () => {
   };
 
   return (
-    <Style.Background>
-      <ReturnPage Route={() => navigate("/profiles")} />
+    <ProfileEditBackground>
+      <Header />
 
-      <ContainerForm>
-        <Style.EditImg src={profile.imageUrl ? profile.imageUrl : ""} />
-
-        <Style.EditForm onSubmit={handleEditProfile}>
-          <Style.InputEdit
-            type="text"
-            placeholder=" Url da imagem"
-            name="imageUrl"
-            id="imageUrl"
-            value={profile.imageUrl}
-            onChange={handleChangeValues}
-            required
-          />
-
-          <Style.InputEdit
-            type="text"
-            placeholder=" Nome do perfil"
-            name="title"
-            id="title"
-            value={profile.title}
-            onChange={handleChangeValues}
-            required
-          />
-
-          <Style.ContainerBtns>
-            <Style.EditProfileBtn type="submit">Atualizar</Style.EditProfileBtn>
-            <DeleteProfileBtn />
-          </Style.ContainerBtns>
-        </Style.EditForm>
-      </ContainerForm>
-    </Style.Background>
+      <ProfileEditContainer onSubmit={handleEditProfile}>
+        <ProfileEditImg src={profile.imageUrl ? profile.imageUrl : ""} />
+        <ProfileEditRow>
+          <ProfileEditCol>
+            <ProfileEditFormGroup>
+              <input
+                type="text"
+                placeholder=" Url da imagem"
+                name="imageUrl"
+                id="imageUrl"
+                value={profile.imageUrl}
+                onChange={handleChangeValues}
+                required
+              />
+            </ProfileEditFormGroup>
+          </ProfileEditCol>
+        </ProfileEditRow>
+        <ProfileEditRow>
+          <ProfileEditCol>
+            <ProfileEditFormGroup>
+              <input
+                type="text"
+                placeholder=" Nome do perfil"
+                name="title"
+                id="title"
+                value={profile.title}
+                onChange={handleChangeValues}
+                required
+              />
+            </ProfileEditFormGroup>
+          </ProfileEditCol>
+        </ProfileEditRow>
+        <ProfileEditButton type="submit">Editar</ProfileEditButton>{" "}
+        <DeleteProfileBtn />
+      </ProfileEditContainer>
+    </ProfileEditBackground>
   );
 };

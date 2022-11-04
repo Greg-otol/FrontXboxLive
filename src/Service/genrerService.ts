@@ -1,6 +1,6 @@
 import Api from "./api";
 import swal from "sweetalert";
-import { CreateGenrerType } from "types/interfaces";
+import { ICreateGenrerType } from "types/interfaces";
 
 export const Genrers = {
   AllGenrers: async () => {
@@ -31,7 +31,7 @@ export const Genrers = {
     }
   },
 
-  CreateGenrer: async (genrer: CreateGenrerType) => {
+  CreateGenrer: async (genrer: ICreateGenrerType) => {
     try {
       const res = await Api.post("/genders", genrer);
       return res;
@@ -45,7 +45,7 @@ export const Genrers = {
     }
   },
 
-  EditGenrer: async (id: string, genrer: CreateGenrerType) => {
+  EditGenrer: async (id: string, genrer: ICreateGenrerType) => {
     try {
       const res = await Api.patch(`/genders/${id}`, genrer);
       return res;

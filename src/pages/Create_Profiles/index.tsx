@@ -1,17 +1,24 @@
 import { useNavigate } from "react-router-dom";
-import * as Style from "./styles";
 import Avatar01 from "assets/img/avatar_1.png";
-import { ReturnPage } from "components/ReturnPage";
-import { ContainerForm } from "components/ContainerForm";
-import { ProfilesTypes } from "types/interfaces";
+import { IProfilesTypes } from "types/interfaces";
 import React, { useState } from "react";
 import swal from "sweetalert";
 import { Profiles } from "Service/profileService";
+import { Header } from "components/Header/Header";
+import {
+  ProfileBackground,
+  ProfileButton,
+  ProfileCol,
+  ProfileContainer,
+  ProfileFormGroup,
+  ProfileImg,
+  ProfileRow,
+} from "./styles";
 
 export const CreateProfile = () => {
   const navigate = useNavigate();
 
-  const [profile, setProfile] = useState<ProfilesTypes>({
+  const [profile, setProfile] = useState<IProfilesTypes>({
     imageUrl: "",
     title: "",
     userId: "",
@@ -21,7 +28,7 @@ export const CreateProfile = () => {
     const idUser = localStorage.getItem("userId");
 
     if (idUser) {
-      setProfile((profile: ProfilesTypes) => ({
+      setProfile((profile: IProfilesTypes) => ({
         ...profile,
         userId: idUser,
         [e.target.name]: e.target.value,
@@ -51,34 +58,43 @@ export const CreateProfile = () => {
   };
 
   return (
-    <Style.Background>
-      <ReturnPage Route={() => navigate("/profiles")} />
+    <ProfileBackground>
+      <Header />
 
-      <ContainerForm>
-        <Style.Img src={profile.imageUrl ? profile.imageUrl : Avatar01} />
+      <ProfileContainer onSubmit={handleCreateProfile}>
+        <ProfileImg src={profile.imageUrl ? profile.imageUrl : Avatar01} />
+        <ProfileRow>
+          <ProfileCol>
+            <ProfileFormGroup>
+              <input
+                type="text"
+                placeholder=" Url da imagem"
+                name="imageUrl"
+                id="imageUrl"
+                onChange={handleValues}
+                required
+              />
+            </ProfileFormGroup>
+          </ProfileCol>
+        </ProfileRow>
 
-        <Style.Form onSubmit={handleCreateProfile}>
-          <Style.InputCreate
-            type="text"
-            placeholder=" Url da imagem"
-            name="imageUrl"
-            id="imageUrl"
-            onChange={handleValues}
-            required
-          />
+        <ProfileRow>
+          <ProfileCol>
+            <ProfileFormGroup>
+              <input
+                type="text"
+                placeholder=" Nome do perfil"
+                name="title"
+                id="title"
+                onChange={handleValues}
+                required
+              />
+            </ProfileFormGroup>
+          </ProfileCol>
+        </ProfileRow>
 
-          <Style.InputCreate
-            type="text"
-            placeholder=" Nome do perfil"
-            name="title"
-            id="title"
-            onChange={handleValues}
-            required
-          />
-
-          <Style.CreateProfileBtn>Criar</Style.CreateProfileBtn>
-        </Style.Form>
-      </ContainerForm>
-    </Style.Background>
+        <ProfileButton type="submit">Criar</ProfileButton>
+      </ProfileContainer>
+    </ProfileBackground>
   );
 };

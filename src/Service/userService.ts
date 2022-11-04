@@ -1,6 +1,6 @@
 import Api from "./api";
 import swal from "sweetalert";
-import { UserType } from "types/interfaces";
+import { IUserType } from "types/interfaces";
 
 export const User = {
   GetAllUsers: async () => {
@@ -31,7 +31,7 @@ export const User = {
     }
   },
 
-  UpdatedUser: async (id: string, user: UserType) => {
+  UpdatedUser: async (id: string, user: IUserType) => {
     try {
       const res = await Api.patch(`/user/${id}`, user);
       return res;

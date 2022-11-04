@@ -1,19 +1,37 @@
-import { CreateGamesAdmin } from "components/Create/CreateGames";
-import { CreateGenrerAdmin } from "components/Create/CreateGenre";
-import { ReturnPage } from "components/ReturnPage";
+import gameImg from "../../assets/icon/add_game.svg";
+import category from "../../assets/img/category.png";
+import { Header } from "components/Header/Header";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ReactStars from "react-stars";
 import { Favorite } from "Service/favoriteService";
 import { Profiles } from "Service/profileService";
-import { FavoriteGamesType, ProfilesTypes } from "types/interfaces";
-import * as Style from "./homepage-style";
+import { IFavoriteGamesType, IProfilesTypes } from "types/interfaces";
+import {
+  AdminDiv,
+  AdminProfileInfos,
+  CardSection,
+  ContentCard,
+  CoverImageGame,
+  GameButton,
+  GenrerButton,
+  HomePageButton,
+  ImageDiv,
+  ImgGame,
+  ImgGenrer,
+  InfoSection,
+  ProfileHomepage,
+  ProfileImg,
+  ProfileName,
+  ScoreGame,
+  TitleGame,
+} from "./homepage-style";
 
 export const Homepage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [profileInfos, setProfileInfos] = useState<ProfilesTypes>({
+  const [profileInfos, setProfileInfos] = useState<IProfilesTypes>({
     title: "",
     imageUrl: "",
     userId: "",
@@ -24,7 +42,7 @@ export const Homepage = () => {
     },
   });
 
-  const [favoriteGames, setFavoriteGames] = useState<FavoriteGamesType>({
+  const [favoriteGames, setFavoriteGames] = useState<IFavoriteGamesType>({
     games: [
       {
         id: "",
@@ -81,41 +99,46 @@ export const Homepage = () => {
   };
 
   return (
-    <Style.Homepage>
-      <ReturnPage Route={() => navigate("/profiles")} />
-
-      <Style.AdminProfileInfos>
-        <Style.ProfileImg
-          src={profileInfos?.imageUrl}
-          alt="Capa do perfil"
-          onClick={UserConfigsNavigate}
-        />
-        <Style.ProfileName>{profileInfos?.title}</Style.ProfileName>
-        <Style.ProfileName>{profileInfos.user?.nickname}</Style.ProfileName>
-      </Style.AdminProfileInfos>
-
-      {profileInfos.user?.isAdmin === true ? (
-        <Style.AdminDiv>
-          <CreateGamesAdmin
-            Route={() => navigate(`/profile/createGames&Genrer/${id}`)}
+    <ProfileHomepage>
+      <Header />
+      <ImageDiv>
+        <AdminProfileInfos>
+          <ProfileImg
+            src={profileInfos?.imageUrl}
+            alt="Capa do perfil"
+            onClick={UserConfigsNavigate}
           />
-          <CreateGenrerAdmin Route={() => navigate(`/profile/genrers/${id}`)} />
-        </Style.AdminDiv>
-      ) : (
-        ""
-      )}
+          <ProfileName>{profileInfos?.title}</ProfileName>
+          <ProfileName>{profileInfos.user?.nickname}</ProfileName>
+        </AdminProfileInfos>
 
-      <Style.CardSection>
+        {profileInfos.user?.isAdmin === true ? (
+          <AdminDiv>
+            <GameButton
+              onClick={() => navigate(`/profile/createGames&Genrer/${id}`)}
+            >
+              <ImgGame src={gameImg} />
+            </GameButton>
+
+            <GenrerButton onClick={() => navigate(`/profile/genrers/${id}`)}>
+              <ImgGenrer src={category} />
+            </GenrerButton>
+          </AdminDiv>
+        ) : (
+          ""
+        )}
+      </ImageDiv>
+      <CardSection>
         {favoriteGames
           ? favoriteGames.games.map((game, index) => (
-              <Style.ContentCard key={index}>
-                <Style.TitleGame>{game.title}</Style.TitleGame>
-                <Style.CoverImageGame
+              <ContentCard key={index}>
+                <TitleGame>{game.title}</TitleGame>
+                <CoverImageGame
                   onClick={() => navigate(`/profile/game/${game.id}`)}
                   src={game.coverImageUrl}
                   alt={"image de fundo do jogo" + game.title}
                 />
-                <Style.ScoreGame>
+                <ScoreGame>
                   <ReactStars
                     count={5}
                     value={game.imbScore}
@@ -123,22 +146,22 @@ export const Homepage = () => {
                     size={35}
                     color2={"#ffd700"}
                   />
-                </Style.ScoreGame>
-              </Style.ContentCard>
+                </ScoreGame>
+              </ContentCard>
             ))
           : ""}
-      </Style.CardSection>
+      </CardSection>
 
-      <Style.InfoSection>
-        <Style.InfoCard
+      <InfoSection>
+        <HomePageButton
           onClick={() => navigate(`/profile/homepage/list/${id}`)}
         >
-          <p>Minha biblioteca</p>
-        </Style.InfoCard>
-        <Style.InfoCard onClick={() => navigate(`/profile/homepage/library`)}>
-          <p>Ver tudo disponivel</p>
-        </Style.InfoCard>
-      </Style.InfoSection>
-    </Style.Homepage>
+          Minha biblioteca
+        </HomePageButton>
+        <HomePageButton onClick={() => navigate(`/profile/homepage/library`)}>
+          Tudo disponível
+        </HomePageButton>
+      </InfoSection>
+    </ProfileHomepage>
   );
 };
