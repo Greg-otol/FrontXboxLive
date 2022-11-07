@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const Api = axios.create({
-    baseURL: 'http://localhost:3001/'
-    //baseURL: 'https://back-xbox-live.onrender.com'
+    //baseURL: 'http://localhost:3001/'
+    baseURL: 'https://back-xbox-live.onrender.com'
 })
 
 Api.interceptors.request.use((config: any) => {
