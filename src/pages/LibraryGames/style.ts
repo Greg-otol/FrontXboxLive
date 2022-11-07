@@ -30,10 +30,10 @@ export const CardGrid = styled.section`
   gap: 2rem;
   width: 100%;
   height: auto;
-  margin-top: 6rem;
+  margin-top: 20px;
 `;
 
-export const SectionSearch = styled.p`
+export const SectionSearch = styled.h4`
   text-align: center;
   color: rgb(230, 230, 230);
 `;
@@ -52,6 +52,10 @@ export const CoverImageGame = styled.img`
   height: 400px;
   margin: 0 auto;
   border-radius: 10px;
+
+  @media screen and (max-width: 450px) {
+    width: 270px;
+  }
 `;
 
 export const GenrerGame = styled.div`
