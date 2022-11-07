@@ -21,7 +21,7 @@ import {
 } from "./style";
 
 export const CrudGenrer = () => {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const [name, setName] = useState<ICreateGenrerType>({
     name: "",
