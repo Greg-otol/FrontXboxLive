@@ -84,3 +84,25 @@ export const DivImg = styled.form`
     align-items: center;
   `}
 `;
+
+export const ContainerOption = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 1rem auto;
+`;
+
+export const AddGameSelect = styled.div`
+  margin: 5px auto;
+  width: 100%;
+  select {
+    display: inherit;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    outline: 0;
+    font-size: 1rem;
+    padding: 10px;
+    width: 100%;
+  }
+`;

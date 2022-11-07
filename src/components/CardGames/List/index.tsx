@@ -1,8 +1,8 @@
-import * as Style from "./style";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { ReactNode, useState } from "react";
 import { Favorite } from "Service/favoriteService";
 import { useNavigate } from "react-router-dom";
+import { Card, ContentCard, Icon, IconContainer, TitleGame } from "./style";
 
 interface CardProps {
   title: string;
@@ -33,18 +33,16 @@ export const CardGames = (props: CardProps) => {
   };
 
   return (
-    <Style.Card>
-      <Style.IconContainer>
-        <Style.Icon onClick={favoriteGame}>
+    <Card>
+      <IconContainer>
+        <Icon onClick={favoriteGame}>
           {favorite ? <MdFavorite /> : <MdFavoriteBorder />}
-        </Style.Icon>
-      </Style.IconContainer>
+        </Icon>
+      </IconContainer>
 
-      <Style.TitleGame>{props.title}</Style.TitleGame>
+      <TitleGame>{props.title}</TitleGame>
 
-      <Style.ContentCard onClick={props.Route}>
-        {props.children}
-      </Style.ContentCard>
-    </Style.Card>
+      <ContentCard onClick={props.Route}>{props.children}</ContentCard>
+    </Card>
   );
 };

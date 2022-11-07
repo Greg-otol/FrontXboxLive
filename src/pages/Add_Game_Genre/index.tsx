@@ -1,8 +1,8 @@
 import swal from "sweetalert";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GetGames } from "Service/gamesService";
-import { ICreateGameType } from "types/interfaces";
+import { ICreateGameType, IGenrerTypes } from "types/interfaces";
 import { Header } from "components/Header/Header";
 import {
   AddGameButton,
@@ -12,10 +12,26 @@ import {
   AddGameRow,
   CoverImgGame,
   DivImg,
+  AddGameSelect,
   Page,
 } from "./style";
+import { Genrers } from "../../Service/genrerService";
 
 export const CrudGamesGenrer = () => {
+  const [genrers, setGenrers] = useState<IGenrerTypes[]>([]);
+
+  useEffect(() => {
+    allGenrers();
+  }, []);
+
+  const allGenrers = async () => {
+    const allGenrers = await Genrers.AllGenrers();
+
+    if (allGenrers) {
+      setGenrers(allGenrers.data);
+    }
+  };
+
   const navigate = useNavigate();
 
   const [game, setGame] = useState<ICreateGameType>({
@@ -29,7 +45,11 @@ export const CrudGamesGenrer = () => {
     genreGame: "",
   });
 
-  const handleValues = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleValues = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+  ) => {
     if (e.target.name === "year" || e.target.name === "imbScore") {
       setGame((value: ICreateGameType) => ({
         ...value,
@@ -179,16 +199,18 @@ export const CrudGamesGenrer = () => {
 
         <AddGameRow>
           <AddGameCol>
-            <AddGameFormGroup>
-              <input
-                type="text"
-                placeholder="Gênero do jogo"
-                name="genreGame"
-                id="genreGame"
-                onChange={handleValues}
-                required
-              />
-            </AddGameFormGroup>
+            <AddGameSelect>
+              <select name="genreGame" id="genreGame" onChange={handleValues}>
+                <option value="">Selecione o gênero</option>
+                {genrers.map((genrer) => {
+                  return (
+                    <option key={genrer.id} value={genrer.name}>
+                      {genrer.name}
+                    </option>
+                  );
+                })}
+              </select>
+            </AddGameSelect>
           </AddGameCol>
         </AddGameRow>
 

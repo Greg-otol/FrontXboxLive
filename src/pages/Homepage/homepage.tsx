@@ -24,6 +24,7 @@ import {
   ProfileImg,
   ProfileName,
   ScoreGame,
+  TitleFavorite,
   TitleGame,
 } from "./homepage-style";
 
@@ -128,6 +129,20 @@ export const Homepage = () => {
           ""
         )}
       </ImageDiv>
+
+      <InfoSection>
+        {/* <HomePageButton
+          onClick={() => navigate(`/profile/homepage/list/${id}`)}
+        >
+          Minha biblioteca
+        </HomePageButton> */}
+        <HomePageButton onClick={() => navigate(`/profile/homepage/library`)}>
+          Clique aqui para acessar todos os jogos
+        </HomePageButton>
+      </InfoSection>
+
+      <TitleFavorite>Jogos favoritos</TitleFavorite>
+
       <CardSection>
         {favoriteGames
           ? favoriteGames.games.map((game, index) => (
@@ -151,17 +166,6 @@ export const Homepage = () => {
             ))
           : ""}
       </CardSection>
-
-      <InfoSection>
-        <HomePageButton
-          onClick={() => navigate(`/profile/homepage/list/${id}`)}
-        >
-          Minha biblioteca
-        </HomePageButton>
-        <HomePageButton onClick={() => navigate(`/profile/homepage/library`)}>
-          Tudo disponível
-        </HomePageButton>
-      </InfoSection>
     </ProfileHomepage>
   );
 };

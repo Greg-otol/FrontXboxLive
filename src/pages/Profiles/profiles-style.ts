@@ -10,9 +10,7 @@ export const ProfileBackground = styled.div`
   background-size: cover;
   width: 100%;
   height: 100vh;
-  @media screen and (max-width: 760px) {
-    height: 100%;
-  }
+  
 `;
 
 export const ProfileSection = styled.div`

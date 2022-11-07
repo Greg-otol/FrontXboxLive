@@ -20,7 +20,7 @@ export const ProfileEditContainer = styled.form`
   width: 450px;
   background: rgba(0, 0, 0, 0.3);
   margin: 0 auto;
-  
+
   padding: 20px;
   border-radius: 10px;
   @media screen and (max-width: 500px) {

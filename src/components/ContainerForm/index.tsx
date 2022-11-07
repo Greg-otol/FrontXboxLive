@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import * as Stlye from "./style";
+import { DivContent } from "./style";
 
 interface FormProps {
   children: ReactNode;
@@ -7,8 +7,8 @@ interface FormProps {
 
 export const ContainerForm = (props: FormProps) => {
   return (
-    <Stlye.ContainerForm>
-      <Stlye.DivContent>{props.children}</Stlye.DivContent>
-    </Stlye.ContainerForm>
+    <ContainerForm>
+      <DivContent>{props.children}</DivContent>
+    </ContainerForm>
   );
 };

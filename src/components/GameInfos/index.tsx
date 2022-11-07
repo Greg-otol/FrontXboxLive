@@ -1,4 +1,9 @@
-import * as Style from "./style";
+import {
+  ContainerIframes,
+  CoverImageGame,
+  IframeContent,
+  InfoContainer,
+} from "./style";
 
 interface Props {
   imageGame: string | undefined;
@@ -8,19 +13,13 @@ interface Props {
 
 export const GameInfos = ({ imageGame, gameTrailer, gameplayGame }: Props) => {
   return (
-    <Style.InfoContainer>
-      <Style.CoverImageGame src={imageGame} />
+    <InfoContainer>
+      <CoverImageGame src={imageGame} />
 
-      <Style.ContainerIframes>
-        <Style.IframeContent
-          src={gameTrailer}
-          loading="lazy"
-        ></Style.IframeContent>
-        <Style.IframeContent
-          src={gameplayGame}
-          loading="eager"
-        ></Style.IframeContent>
-      </Style.ContainerIframes>
-    </Style.InfoContainer>
+      <ContainerIframes>
+        <IframeContent src={gameTrailer} loading="lazy"></IframeContent>
+        <IframeContent src={gameplayGame} loading="eager"></IframeContent>
+      </ContainerIframes>
+    </InfoContainer>
   );
 };

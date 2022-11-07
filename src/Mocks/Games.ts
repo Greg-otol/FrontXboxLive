@@ -5,11 +5,11 @@ export const Games = [
     coverImageUrl:
       "https://upload.wikimedia.org/wikipedia/pt/d/d1/Halo_Infinite_capa.png",
     description:
-      "Excelente jogo exclusivo da Microsoft contanto a historia do Master Chef",
+      "Excelente jogo exclusivo da Microsoft",
     year: 2021,
     imbScore: 4,
-    trailerYoutubeUrl: "https://www.youtube.com/watch?v=PyMlV5_HRWk",
-    gameplayYouTubeUrl: "https://www.youtube.com/watch?v=YoWhmo3W2wc",
+    trailerYoutubeUrl: "https://www.youtube.com/embed/PyMlV5_HRWk",
+    gameplayYouTubeUrl: "https://www.youtube.com/embed/YoWhmo3W2wc",
   },
   {
     id: 2,

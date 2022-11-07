@@ -19,6 +19,11 @@ export const ProfileHomepage = styled.main`
   }
 `;
 
+export const TitleFavorite = styled.h3`
+  padding: 10px;
+  color: rgb(230, 230, 230);
+`;
+
 export const AdminProfileInfos = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -79,7 +84,7 @@ export const CardSection = styled.section`
   gap: 2rem;
   width: 100%;
   height: auto;
-  margin-top: 6rem;
+  margin-top: 20px;
 `;
 
 export const ContentCard = styled.div`
@@ -102,8 +107,8 @@ export const TitleGame = styled.h2`
 `;
 
 export const CoverImageGame = styled.img`
-  width: 400px;
-  //height: 400px;
+  width: 350px;
+  height: 400px;
   margin: 0 auto;
   border-radius: 10px;
   cursor: pointer;
@@ -162,7 +167,7 @@ export const HomePageButton = styled.button`
   font-size: 1.25rem;
   padding: 10px;
   margin: 10px auto;
-  width: 100%;
+  width: 60%;
   cursor: pointer;
   transition: all 0.8s ease-out;
   &:hover {
